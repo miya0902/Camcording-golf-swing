@@ -77,17 +77,17 @@
 				console.log( "録画停止" );
 			
 			
-			//録画ファイル生成	
-			var blob = recordRTC.blob;
-
-			// equivalent to: recordRTC.getBlob() method
-			//var blob = recordRTC.getBlob();
-			var videoBlob = new Blob([evt.data], { type: evt.data.type });
-			blobUrl = window.URL.createObjectURL(videoBlob);
-			console.log( "録画ファイル生成" );
-			});
+				//録画ファイル生成	
+				var blob = recordRTC.blob;
+	
+				// equivalent to: recordRTC.getBlob() method
+				//var blob = recordRTC.getBlob();
+				var videoBlob = new Blob([evt.data], { type: evt.data.type });
+				blobUrl = window.URL.createObjectURL(videoBlob);
+				console.log( "録画ファイル生成" );
+				});
 			
-			
+		}
 			
 			
 			
