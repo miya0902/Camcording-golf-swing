@@ -60,11 +60,11 @@
 		//録画
 		//var startRecording = document.getElementById('startRecording');
 		//var stopRecording = document.getElementById('stopRecording');
-		var recordVideo;
+		
 		
 		//録画開始
 		function startRecording() {
-			recordVideo = RecordRTC(stream, {type: 'video' });
+			var recordVideo = RecordRTC(stream, {type: 'video' });
 			console.log( "録画開始" );
 		}
 
