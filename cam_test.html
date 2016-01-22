@@ -60,35 +60,28 @@
 		//録画
 		var startRecording = document.getElementById('startRecording');
 		var stopRecording = document.getElementById('stopRecording');
-
+		var recordVideo;
 		function startRecording() {
-			startRecording = RecordRTC(stream, {type: 'video' });
+			recordVideo = RecordRTC(stream, {type: 'video' });
 		}
 
 		function stopRecording() {
-			stopRecording = RecordRTC(stream, {type: 'video' });
+			recordVideo.stopRecording();
 			
-			 recorder.ondataavailable = function(evt) {
+			 recordVideo.ondataavailable = function(evt) {
 			// 録画が終了したタイミングで呼び出される
 			}
 		}
 
 		//録画ファイル生成
 		var blobUrl = null;
-		recorder.ondataavailable = function(evt) {
+		recordVideo.ondataavailable = function(evt) {
 			var videoBlob = new Blob([evt.data], { type: evt.data.type });
 			blobUrl = window.URL.createObjectURL(videoBlob);
 		}
 
 		//再生
 		var playbackVideo =  document.getElementById('playback_video');
-		var files = { };
-		files.video = {
-                        name: fileName + '.webm',
-                        type: 'video/webm',
-                        contents: videoDataURL
-		};
-
 		function playRecorded() {
 			if (blobUrl) {
 				playbackVideo.src = blobUrl;
