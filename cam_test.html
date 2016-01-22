@@ -62,10 +62,11 @@
 		//var startRecording = document.getElementById('startRecording');
 		//var stopRecording = document.getElementById('stopRecording');
 		
-		
+		var recordVideo
 		//録画開始
 		function startRecording() {
-			var recordVideo = RecordRTC(stream, {type: 'video' });
+			recordVideo = RecordRTC(stream, {type: 'video' });
+			recordVideo.startRecording(); 
 			console.log( "録画開始" );
 		}
 
@@ -74,7 +75,7 @@
 		//録画停止
 		function stopRecording() {
 			
-			recordRTC.stopRecording(function() {
+			recordVideo.stopRecording(function() {
 				console.log( "録画停止" );
 			
 			
