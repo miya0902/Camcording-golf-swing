@@ -61,26 +61,39 @@
 		//var startRecording = document.getElementById('startRecording');
 		//var stopRecording = document.getElementById('stopRecording');
 		var recordVideo;
+		
+		//録画開始
 		function startRecording() {
 			recordVideo = RecordRTC(stream, {type: 'video' });
 			console.log( "録画開始" );
 		}
 
-		function stopRecording() {
-			recordVideo.stopRecording();
-			console.log( "録画停止" );
-			 recordVideo.ondataavailable = function(evt) {
-			// 録画が終了したタイミングで呼び出される
-			}
-		}
 
-		//録画ファイル生成
-		var blobUrl = null;
-		recordVideo.ondataavailable = function(evt) {
+
+		//録画停止
+		function stopRecording() {
+			
+			recordRTC.stopRecording(function() {
+				console.log( "録画停止" );
+			
+			
+			//録画ファイル生成	
+			var blob = recordRTC.blob;
+
+			// equivalent to: recordRTC.getBlob() method
+			//var blob = recordRTC.getBlob();
 			var videoBlob = new Blob([evt.data], { type: evt.data.type });
 			blobUrl = window.URL.createObjectURL(videoBlob);
 			console.log( "録画ファイル生成" );
-		}
+			});
+			
+			
+			
+			
+			
+
+
+
 
 		//再生
 		var playbackVideo =  document.getElementById('playback_video');
