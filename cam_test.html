@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>recording Firefox</title>
+	</head>
+
+
+	<body>
+ 		<button id="start_button" onclick="startVideo()">StartVideo</button>
+		 <button id="stop_button" onclick="stopVideo()">StopVideo</button>
+		  
+		 <button id="start_record_button" onclick="startRecording()">StartRecord</button>
+		 <button id="stop_record_button" onclick="stopRecording()">StopRecord</button>
+		  
+		 <button id="play_button" onclick="playRecorded()">Play</button>
+		 <a href="#" id="downloadlink" class="download">Download</a>
+		 
+		 <br />
+		 <video id="local_video" width="480px" height="640px" autoplay="1" style="border: 1px solid;"></video>
+		 <video id="playback_video" width="480px" height="640px" autoplay="1" style="border: 1px solid;"></video>
+	</body>
+
+
+	<script>
+
+		navigator.getUserMedia  = navigator.getUserMedia    || navigator.webkitGetUserMedia ||
+                           navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+		var localVideo =  document.getElementById('local_video');
+		var localStream = null;
+
+		// Request the usermedia
+		function startVideo() {
+		 navigator.getUserMedia({video: true, audio: false}, showMedia, errCallback);
+		}
+		 
+		function showMedia(stream) {
+		 localStream  = stream;
+		 localVideo.src = window.URL.createObjectURL(stream);
+		}
+		 
+		var errCallback = function(e) {
+		 console.log('media error', e);
+		};
+ 
+ 
+		function stopVideo() {
+		 if (localStream) {
+		  localVideo.pause();
+		  localVideo.src = "";
+		 
+		  localStream.stop();
+		  localStream = null;
+		 }
+		}
+
+
+	</script>
+</html>
