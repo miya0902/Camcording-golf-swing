@@ -7,7 +7,7 @@
 
 
 	<body>
- 		<button id="start_button" onclick="startVideo()">StartVideo</button>
+ 		 <button id="start_button" onclick="startVideo()">StartVideo</button>
 		 <button id="stop_button" onclick="stopVideo()">StopVideo</button>
 		  
 		 <button id="start_record_button" onclick="startRecording()">StartRecord</button>
@@ -24,6 +24,7 @@
 
 	<script>
 
+		//プレビュー
 		navigator.getUserMedia  = navigator.getUserMedia    || navigator.webkitGetUserMedia ||
                            navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
@@ -54,6 +55,21 @@
 		  localStream = null;
 		 }
 		}
+
+
+		//録画
+		var startRecording = document.getElementById('startRecording');
+		var stopRecording = document.getElementById('stopRecording');
+
+		function startRecording() {
+			startRecording = RecordRTC(stream, {type: 'video' });
+		}
+
+		function stopRecording() {
+			stopRecording = RecordRTC(stream, {type: 'video' });
+		}
+
+
 
 
 	</script>
